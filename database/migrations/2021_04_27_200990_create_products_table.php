@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Product;
 
 class CreateProductsTable extends Migration
 {
@@ -25,7 +26,9 @@ class CreateProductsTable extends Migration
             
             $table->float('price');
 
-            $table->integer('quantity');
+            $table->integer('quantity')->nullable();
+
+            $table->enum('status', [Product::BORRADOR, Product::PUBLICADO])->default(Product::BORRADOR);
 
             $table->timestamps();
         });
