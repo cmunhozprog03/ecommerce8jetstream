@@ -1,4 +1,12 @@
-<header class="bg-gray-700">
+<style>
+    #navigaton-menu{
+        
+        height: calc(100vh - 4rem);
+    }
+</style>
+
+
+<header class="bg-gray-700 sticky top-0">
     <div class="container flex items-center h-16">
         <a class="flex flex-col items-center justify-center bg-white bg-opacity-25 text-white
             cursor-pointer font-semibold h-full px-4">
@@ -10,15 +18,16 @@
             <span>Categorias</span>
         </a>
 
-        <a href="/" class="mx-6">
-            <x-jet-application-mark class="block h-9 w-auto" />
+        <a href="/" class="">
+            <x-jet-application-mark class="block h-9 w-auto mx-4" />
         </a>
 
         @livewire('search')
 
+        <div class="mx-6 relative">
         @auth
             <!-- Settings Dropdown -->
-            <div class="mx-6 relative">
+            
                 <x-jet-dropdown align="right" width="48">
                     <x-slot name="trigger">
 
@@ -72,9 +81,36 @@
                 </x-jet-dropdown>
 
             @endauth
+            
         </div>
-
         @livewire('dropdown-cart')
+       
 
     </div>
+    {{-- End-Header --}}
+
+    {{-- Menu --}}
+    <nav id="navigaton-menu" class="bg-gray-700 bg-opacity-25 w-full absolute">
+        <div class="container h-full">
+            <div class="grid grid-cols-4 h-full relative">
+                <ul class="bg-white">
+                    @foreach ($categories as $category)
+                        <li class="text-gray-500 hover:bg-yellow-600 hover:text-white">
+                            <a href="" class="py-2 px-4 text-sm flex items-center">
+                                <span class="flex justify-center w-9">
+                                    {!! $category->icon !!}
+                                </span>
+                                {{ $category->name }}
+                            </a>
+                            <div class="bg-red-500 absolute w-3/4 h-full top-0 right-0">
+
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+                <div class="col-span-3 bg-gray-200"></div>
+            </div>
+        </div>
+    </nav>
+
 </header>
