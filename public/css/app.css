@@ -35212,6 +35212,26 @@ a{
   border-color:#e7ffff!important
 }
 
+.container{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
