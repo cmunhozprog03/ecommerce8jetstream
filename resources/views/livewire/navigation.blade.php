@@ -2,26 +2,30 @@
 
 
 <header class="bg-gray-700 sticky top-0" x-data="dropdown()">
-    <div class="container flex items-center h-16">
-        <a 
+    <div class="container flex items-center h-16 justify-between md:justify-start">
+        <a :class="{'bg-opacity-100 text-orange-700' : open}"
             x-on:click="show()"
-            class="flex flex-col items-center justify-center bg-white bg-opacity-25 text-white
-            cursor-pointer font-semibold h-full px-4">
+            class="flex flex-col items-center justify-center order-last
+                md:order-first bg-white bg-opacity-25 text-white
+            cursor-pointer font-semibold h-full px-6 md:px-4">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" class="inline-flex" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
 
-            <span>Categorias</span>
+            <span class="hidden md:block">Categorias</span>
         </a>
 
         <a href="/" class="">
             <x-jet-application-mark class="block h-9 w-auto mx-4" />
         </a>
 
-        @livewire('search')
-
-        <div class="mx-6 relative">
+        <div class="flex-1 hidden md:block">
+            @livewire('search')
+        </div>
+        
+        {{-- Login --}}
+        <div class="mx-6 relative hidden md:block">
         @auth
             <!-- Settings Dropdown -->
             
@@ -80,7 +84,11 @@
             @endauth
             
         </div>
-        @livewire('dropdown-cart')
+
+        <div class="hidden md:block">
+            @livewire('dropdown-cart')
+        </div>
+        
        
 
     </div>
