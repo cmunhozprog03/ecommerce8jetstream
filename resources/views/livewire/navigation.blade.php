@@ -1,17 +1,11 @@
-<style>
-    #navigation-menu{
-        
-        height: calc(100vh - 4rem);
-    }
-    .navigation-link:hover .navigation-submenu{
-        display: block !important;
-    }
-</style>
 
 
-<header class="bg-gray-700 sticky top-0">
+
+<header class="bg-gray-700 sticky top-0" x-data="dropdown()">
     <div class="container flex items-center h-16">
-        <a class="flex flex-col items-center justify-center bg-white bg-opacity-25 text-white
+        <a 
+            x-on:click="show()"
+            class="flex flex-col items-center justify-center bg-white bg-opacity-25 text-white
             cursor-pointer font-semibold h-full px-4">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path class="inline-flex" class="inline-flex" stroke-linecap="round" stroke-linejoin="round"
@@ -93,9 +87,14 @@
     {{-- End-Header --}}
 
     {{-- Menu --}}
-    <nav id="navigation-menu" class="bg-gray-700 bg-opacity-25 w-full absolute">
+    <nav id="navigation-menu" 
+        :class="{'block': open, 'hidden': !open}"
+        class="bg-gray-700 bg-opacity-25 w-full absolute hidden">
         <div class="container h-full">
-            <div class="grid grid-cols-4 h-full relative">
+            <div 
+                x-on:click.away="close()"
+            
+                class="grid grid-cols-4 h-full relative">
                 <ul class="bg-white">
                     @foreach ($categories as $category)
                         <li class="navigation-link text-gray-700 hover:bg-orange-600 hover:text-white">
@@ -119,3 +118,5 @@
     </nav>
 
 </header>
+
+
